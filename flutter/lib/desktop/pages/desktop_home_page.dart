@@ -60,14 +60,53 @@ class _DesktopHomePageState extends State<DesktopHomePage>
     super.build(context);
     final isIncomingOnly = bind.isIncomingOnly();
     return _buildBlock(
-        child: Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+        child: Column(
       children: [
-        buildLeftPane(context),
-        if (!isIncomingOnly) const VerticalDivider(width: 1),
-        if (!isIncomingOnly) Expanded(child: buildRightPane(context)),
+        Expanded(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              buildLeftPane(context),
+              if (!isIncomingOnly) const VerticalDivider(width: 1),
+              if (!isIncomingOnly) Expanded(child: buildRightPane(context)),
+            ],
+          ),
+        ),
+        _buildBiqFooter(context),
       ],
     ));
+  }
+
+  Widget _buildBiqFooter(BuildContext context) {
+    final style = TextStyle(fontSize: 11, color: Theme.of(context).hintColor);
+    return Container(
+      width: double.infinity,
+      height: 30,
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(color: Theme.of(context).dividerColor, width: 1),
+        ),
+      ),
+      alignment: Alignment.center,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: Text(
+              'Разработано: Бизнес IQ — Консалтинговая компания Тюрина Романа',
+              style: style,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          const SizedBox(width: 12),
+          Text('+7 (499) 110-17-59', style: style),
+          const SizedBox(width: 16),
+          Text('chat.b-iq.ru',
+              style: style.copyWith(color: const Color(0xFF2F6BFF))),
+        ],
+      ),
+    );
   }
 
   Widget _buildBlock({required Widget child}) {
