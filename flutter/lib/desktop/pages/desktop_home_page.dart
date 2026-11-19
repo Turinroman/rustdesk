@@ -102,8 +102,18 @@ class _DesktopHomePageState extends State<DesktopHomePage>
           const SizedBox(width: 12),
           Text('+7 (499) 110-17-59', style: style),
           const SizedBox(width: 16),
-          Text('chat.b-iq.ru',
-              style: style.copyWith(color: const Color(0xFF2F6BFF))),
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: () => launchUrl(Uri.parse('https://chat.b-iq.ru')),
+              child: Text('chat.b-iq.ru',
+                  style: style.copyWith(
+                    color: const Color(0xFF2F6BFF),
+                    decoration: TextDecoration.underline,
+                    decorationColor: const Color(0xFF2F6BFF),
+                  )),
+            ),
+          ),
         ],
       ),
     );
