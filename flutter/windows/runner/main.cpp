@@ -27,7 +27,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
   if (auto result = service_control::HandleCommand(command_line)) {
     return static_cast<int>(*result);
   }
-  HINSTANCE hInstance = LoadLibraryA("librustdesk.dll");
+  HINSTANCE hInstance = LoadLibraryA("biqdesk_core.dll");
   if (!hInstance)
   {
     std::cout << "Failed to load librustdesk.dll." << std::endl;
